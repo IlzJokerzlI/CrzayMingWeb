@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
 
 Vue.use(VueRouter);
 
@@ -9,18 +8,26 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: About,
-  },
+    component: Home
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
-  routes,
+
+  scrollBehavior: (to, from, savedPosition) => {
+    let scrollTo = 0;
+
+    if (to.hash) {
+      scrollTo = to.hash;
+    } else if (savedPosition) {
+      scrollTo = savedPosition.y;
+    }
+
+    return goTo(scrollTo);
+  },
+
+  routes
 });
 
 export default router;

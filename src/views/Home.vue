@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div class="introduction">
+    <!-- Introduction -->
+    <div class="introduction" id="home">
       <h1 class="display-4 custom_brown--text font-weight-black">Welcome</h1>
     </div>
 
-    <div class="custom_white px-4 py-12">
+    <!-- Portfolio 1 Section -->
+    <div class="custom_white px-4 py-12" id="portfolio">
       <v-container>
         <v-row align="center" justify="space-around" class="my-12 mx-md-12">
           <v-card flat class="transparent ml-md-12 my-12" width="440">
@@ -36,10 +38,10 @@
               block
               tile
               elevation="0"
-              ripple="false"
+              :ripple="false"
               color="custom_red"
               class="custom_white--text mt-12 pa-7 headline"
-              href="https://github.com/"
+              href="https://github.com/IlzJokerzlI"
               target="_blank"
             >
               Let's Go
@@ -49,6 +51,7 @@
       </v-container>
     </div>
 
+    <!-- Portfolio 2 Section -->
     <v-card class="custom_grey" tile flat>
       <v-content fluid class="ma-0 pa-4">
         <v-row justify="center" align-content="center" align="center">
@@ -69,7 +72,7 @@
 
             <v-tabs-items
               v-model="tab"
-              class="transparent custom_white--text ma-12"
+              class="transparent custom_white--text pa-12"
             >
               <v-tab-item v-for="work in works" :key="work.title">
                 <div class="d-flex justify-center">
@@ -121,6 +124,14 @@
                       </v-chip>
 
                       <p class="pt-8">"{{ work.lastWorkDesc }}"</p>
+                      <v-btn
+                        color="custom_red custom_white--text"
+                        :href="work.link"
+                        :ripple="false"
+                        target="_blank"
+                      >
+                        Visit
+                      </v-btn>
                     </div>
                   </div>
                 </div>
@@ -131,7 +142,8 @@
       </v-content>
     </v-card>
 
-    <v-container class="focuses custom_beige pa-0" fluid>
+    <!-- About Section -->
+    <v-container class="focuses custom_beige pa-0" fluid id="about ">
       <div class="d-flex justify-center py-8">
         <div
           class="d-flex align-center justify-center flex-wrap pa-0 ma-0"
@@ -232,7 +244,7 @@
     </div>
 
     <!-- CONTACT Section -->
-    <div class="custom_green d-flex justify-center px-8 py-12">
+    <div class="custom_green d-flex justify-center px-8 py-12" id="contact">
       <div>
         <h1 class="font-weight-light display-2">CONTACT</h1>
 
@@ -273,11 +285,11 @@ export default {
         source: require("@/assets/java_logo.svg"),
         alt: "java_logo",
         rating: "2",
-        numOfProjects: 1,
+        numOfProjects: 2,
         lastWorkTitle: "Jialat Zipper",
         lastWorkDesc: "A simple zipper application",
         lastWorkStatus: "completed",
-        link: ""
+        link: "https://github.com/IlzJokerzlI/JavaFinalProject"
       },
 
       {
@@ -289,7 +301,7 @@ export default {
         lastWorkTitle: "Compagnie Search",
         lastWorkDesc: "A data finder",
         lastWorkStatus: "completed",
-        link: ""
+        link: "https://github.com/IlzJokerzlI/CompagnieSearch"
       },
 
       {
@@ -302,7 +314,8 @@ export default {
         lastWorkDesc:
           "An application used to visualize regression lines from a given data",
         lastWorkStatus: "completed",
-        link: ""
+        link:
+          "https://github.com/IlzJokerzlI/RegressionFinalProject/tree/master/CompMathFinalProject"
       },
 
       {
@@ -314,7 +327,7 @@ export default {
         lastWorkTitle: "Crazy Ming Website",
         lastWorkDesc: "A portfolio website",
         lastWorkStatus: "ongoing",
-        link: ""
+        link: "https://github.com/IlzJokerzlI/CrzayMingWeb"
       },
 
       {
@@ -450,5 +463,21 @@ export default {
   position: absolute;
   align-items: center;
   justify-content: center;
+}
+
+.font--title2 {
+  font-size: 40px;
+}
+
+.font--title1 {
+  font-size: 30px;
+}
+
+.font--paragraph {
+  font-size: 18px;
+}
+
+.font--header {
+  font-size: 20px;
 }
 </style>
