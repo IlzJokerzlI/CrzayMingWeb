@@ -5,7 +5,7 @@
       <v-app-bar app flat color="custom_green">
         <v-toolbar-title>
           <v-avatar tile class="mr-5">
-            <img src="../assets/logo.png" />
+            <img src="../assets/ming_logo.png" />
           </v-avatar>
           <span class="font-weight-light">Crazy</span>
           <span class="font-weight-bold">Ming</span>
@@ -56,7 +56,12 @@
 
     <!-- Introduction Section -->
     <div class="introduction" id="home">
-      <h1 class="display-4 custom_brown--text font-weight-black">Welcome</h1>
+      <div>
+        <h1 class="display-4 custom_brown--text font-weight-black">Welcome</h1>
+        <p class="custom_brown--text headline py-2">
+          This is a website about my programmer portfolio
+        </p>
+      </div>
     </div>
 
     <!-- Portfolio 1 Section -->
@@ -531,21 +536,5 @@ export default {
   position: absolute;
   align-items: center;
   justify-content: center;
-}
-
-.font--title2 {
-  font-size: 40px;
-}
-
-.font--title1 {
-  font-size: 30px;
-}
-
-.font--paragraph {
-  font-size: 18px;
-}
-
-.font--header {
-  font-size: 20px;
 }
 </style>
