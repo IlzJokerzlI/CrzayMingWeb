@@ -49,7 +49,88 @@
       </v-container>
     </div>
 
-    <div class="portfolio_work custom_grey"></div>
+    <v-card class="custom_grey" tile flat>
+      <v-content fluid class="ma-0 pa-4">
+        <v-row justify="center" align-content="center" align="center">
+          <v-col cols="8" class="ma-0 pa-0">
+            <v-tabs
+              v-model="tab"
+              dark
+              background-color="transparent"
+              show-arrows="true"
+              centered
+              grow
+            >
+              <v-tabs-slider color="custom_white"></v-tabs-slider>
+              <v-tab v-for="work in works" :key="work.title">
+                {{ work.title }}
+              </v-tab>
+            </v-tabs>
+
+            <v-tabs-items
+              v-model="tab"
+              class="transparent custom_white--text ma-12"
+            >
+              <v-tab-item v-for="work in works" :key="work.title">
+                <div class="d-flex justify-center">
+                  <div style="text-align: center; width:60%; min-width: 300px">
+                    <div>
+                      <v-avatar size="120px" color="custom_beige">
+                        <img
+                          :src="work.source"
+                          :alt="work.alt"
+                          style="height: 90%; width: 90%"
+                        />
+                      </v-avatar>
+
+                      <h1 class="font-weight-light display-3">
+                        {{ work.title }}
+                      </h1>
+
+                      <v-rating
+                        class="pa-0 ma-0"
+                        :value="work.rating"
+                        background-color="grey"
+                        color="yellow"
+                        readonly
+                        dense
+                        small
+                      >
+                      </v-rating>
+                    </div>
+
+                    <div>
+                      <h3 class="font-weight-medium pt-5">Project Count</h3>
+                      <h1 class="font-weight-black">
+                        {{ work.numOfProjects }}
+                      </h1>
+                    </div>
+
+                    <div class="pt-12">
+                      <h1 class="font-weight-light">Latest Work</h1>
+
+                      <v-divider class="custom_orange lighten-1"></v-divider>
+
+                      <h2 class="pt-8">{{ work.lastWorkTitle }}</h2>
+                      <v-chip
+                        v-if="work.lastWorkStatus"
+                        class="lighten-1 mt-1"
+                        :color="changeStatusColor(work.lastWorkStatus)"
+                      >
+                        {{ work.lastWorkStatus }}
+                      </v-chip>
+
+                      <p class="pt-8">"{{ work.lastWorkDesc }}"</p>
+                    </div>
+                  </div>
+                </div>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-col>
+        </v-row>
+      </v-content>
+    </v-card>
+
     <v-container class="focuses custom_beige pa-0" fluid>
       <div class="d-flex justify-center py-8">
         <div
@@ -185,6 +266,70 @@ import assets from "../assets/gimp_logo.svg";
 
 export default {
   data: () => ({
+    tab: null,
+    works: [
+      {
+        title: "Java",
+        source: require("@/assets/java_logo.svg"),
+        alt: "java_logo",
+        rating: "2",
+        numOfProjects: 1,
+        lastWorkTitle: "Jialat Zipper",
+        lastWorkDesc: "A simple zipper application",
+        lastWorkStatus: "completed",
+        link: ""
+      },
+
+      {
+        title: "C++",
+        source: require("@/assets/cpp_logo.svg"),
+        alt: "cpp_logo",
+        rating: "3",
+        numOfProjects: 1,
+        lastWorkTitle: "Compagnie Search",
+        lastWorkDesc: "A data finder",
+        lastWorkStatus: "completed",
+        link: ""
+      },
+
+      {
+        title: "Python",
+        source: require("@/assets/python_logo.svg"),
+        alt: "python_logo",
+        rating: "3",
+        numOfProjects: 1,
+        lastWorkTitle: "Regression Visualization",
+        lastWorkDesc:
+          "An application used to visualize regression lines from a given data",
+        lastWorkStatus: "completed",
+        link: ""
+      },
+
+      {
+        title: "Vue",
+        source: require("@/assets/vue_logo.svg"),
+        alt: "vue_logo",
+        rating: "2",
+        numOfProjects: 1,
+        lastWorkTitle: "Crazy Ming Website",
+        lastWorkDesc: "A portfolio website",
+        lastWorkStatus: "ongoing",
+        link: ""
+      },
+
+      {
+        title: "Flutter",
+        source: require("@/assets/flutter_logo.svg"),
+        alt: "flutter_logo",
+        rating: "4",
+        numOfProjects: 0,
+        lastWorkTitle: "Empty",
+        lastWorkDesc: "",
+        lastWorkStatus: "",
+        link: ""
+      }
+    ],
+
     focuses: [
       {
         title: "Focuses",
@@ -266,7 +411,19 @@ export default {
         link: "https://www.instagram.com/xiao_ming857/"
       }
     ]
-  })
+  }),
+
+  methods: {
+    changeStatusColor: function(status) {
+      if (status == "completed") {
+        return "custom_green";
+      } else if (status == "ongoing") {
+        return "custom_orange";
+      } else {
+        return "transparent";
+      }
+    }
+  }
 };
 </script>
 
