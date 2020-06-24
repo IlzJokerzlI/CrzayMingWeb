@@ -1,6 +1,60 @@
 <template>
   <div>
-    <!-- Introduction -->
+    <!-- Nav Bar Section -->
+    <nav>
+      <v-app-bar app flat color="custom_green">
+        <v-toolbar-title>
+          <v-avatar tile class="mr-5">
+            <img src="../assets/logo.png" />
+          </v-avatar>
+          <span class="font-weight-light">Crazy</span>
+          <span class="font-weight-bold">Ming</span>
+        </v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-toolbar-items>
+          <v-btn
+            text
+            :ripple="false"
+            tile
+            color="custom_brown"
+            @click="$vuetify.goTo('#home', options)"
+          >
+            <span>Home</span>
+          </v-btn>
+          <v-btn
+            text
+            :ripple="false"
+            tile
+            color="custom_brown"
+            @click="$vuetify.goTo('#portfolio', options)"
+          >
+            <span>Work</span>
+          </v-btn>
+          <v-btn
+            text
+            :ripple="false"
+            tile
+            color="custom_brown"
+            @click="$vuetify.goTo('#about', options)"
+          >
+            <span>About</span>
+          </v-btn>
+          <v-btn
+            text
+            :ripple="false"
+            tile
+            color="custom_brown"
+            @click="$vuetify.goTo('#contact', options)"
+          >
+            <span>Contact</span>
+          </v-btn>
+        </v-toolbar-items>
+      </v-app-bar>
+    </nav>
+
+    <!-- Introduction Section -->
     <div class="introduction" id="home">
       <h1 class="display-4 custom_brown--text font-weight-black">Welcome</h1>
     </div>
@@ -22,7 +76,7 @@
             >
               Up?
             </h1>
-            <p class="ma-0 pt-8 text-right headline custom_brown--text">
+            <p class="ma-0 py-8 text-right headline custom_brown--text">
               Visit my github to see all my projects
             </p>
           </v-card>
@@ -103,7 +157,9 @@
                     </div>
 
                     <div>
-                      <h3 class="font-weight-medium pt-5">Project Count</h3>
+                      <h3 class="font-weight-medium headline pt-5">
+                        Project Count
+                      </h3>
                       <h1 class="font-weight-black">
                         {{ work.numOfProjects }}
                       </h1>
@@ -123,7 +179,9 @@
                         {{ work.lastWorkStatus }}
                       </v-chip>
 
-                      <p class="pt-8">"{{ work.lastWorkDesc }}"</p>
+                      <p class="pt-8 title font-weight-light">
+                        "{{ work.lastWorkDesc }}"
+                      </p>
                       <v-btn
                         color="custom_red custom_white--text"
                         :href="work.link"
@@ -143,7 +201,7 @@
     </v-card>
 
     <!-- About Section -->
-    <v-container class="focuses custom_beige pa-0" fluid id="about ">
+    <v-container class="focuses custom_beige pa-0" fluid id="about">
       <div class="d-flex justify-center py-8">
         <div
           class="d-flex align-center justify-center flex-wrap pa-0 ma-0"
@@ -183,7 +241,7 @@
               <v-fade-transition>
                 <div
                   v-if="hover && focus.title != 'Focuses'"
-                  class="d-flex  custom_orange v-card--reveal white--text display-1 pa-4"
+                  class="d-flex  custom_orange v-card--reveal white--text headline text-center pa-4"
                 >
                   <p :class="[focus.background_color + '--text']">
                     {{ focus.content }}
@@ -199,14 +257,15 @@
     <!-- ABOUT ME Section -->
     <div class="custom_white d-flex justify-center pa-6">
       <div style="text-align:center">
-        <h1 class="font-weight-light display-2 pt-12">ABOUT ME</h1>
+        <h1 class="font-weight-light display-1 pt-12">ABOUT ME</h1>
 
-        <div class="py-10 d-flex align-center justify-center">
-          <v-avatar x-large size="250px" class="mr-4">
-            <img src="../assets/my_photo.png" alt="my_photo" />
-          </v-avatar>
-
-          <div style="width:300px" class="ml-4">
+        <d-row>
+          <div class="py-10">
+            <v-avatar x-large size="250px">
+              <img src="../assets/my_photo.png" alt="my_photo" />
+            </v-avatar>
+          </div>
+          <div style="width:300px">
             <p class="title font-weight-light">
               <bold>"</bold>Hi! I am Arvin, <br />
               a programmer currently studying in Bina Nusantara University<bold
@@ -214,11 +273,11 @@
               >
             </p>
           </div>
-        </div>
+        </d-row>
 
         <!-- Other Interests Section -->
-        <div>
-          <h1 class="display-1 font-weight-light">
+        <div class="py-5">
+          <h1 class="headline font-weight-light">
             Other Interests
           </h1>
 
@@ -246,7 +305,7 @@
     <!-- CONTACT Section -->
     <div class="custom_green d-flex justify-center px-8 py-12" id="contact">
       <div>
-        <h1 class="font-weight-light display-2">CONTACT</h1>
+        <h1 class="font-weight-light display-1 text-center">CONTACT</h1>
 
         <div class="mt-4 mb-10" style="text-align:center">
           <v-btn
@@ -256,11 +315,10 @@
             :href="contact.link"
             target="_blank"
             color="transparent"
-            large
             fab
             elevation="2"
           >
-            <v-avatar height="45px" tile color="transparent">
+            <v-avatar height="40px" tile color="transparent">
               <img :src="contact.src" :alt="contact.alt" />
             </v-avatar>
           </v-btn>
@@ -274,11 +332,12 @@
 <script>
 // @ is an alias to /src
 
-import assets from "../assets/gimp_logo.svg";
-
 export default {
   data: () => ({
+    scroll_duration: 1000,
+    scroll_offset: 0,
     tab: null,
+
     works: [
       {
         title: "Java",
@@ -348,7 +407,7 @@ export default {
         title: "Focuses",
         icon: "",
         content: "",
-        font_size: "display-3",
+        font_size: "display-2",
         font_color: "custom_white",
         background_color: "custom_brown"
       },
@@ -357,7 +416,7 @@ export default {
         icon: "accessibility_new",
         content:
           "A simple and easy to use program for users according to their needs",
-        font_size: "",
+        font_size: "display-1",
         font_color: "custom_brown",
         background_color: "custom_white"
       },
@@ -366,7 +425,7 @@ export default {
         title: "Performance",
         icon: "speed",
         content: "Fast execution to prevent users from getting bored",
-        font_size: "",
+        font_size: "display-1",
         font_color: "custom_brown",
         background_color: "custom_white"
       },
@@ -375,7 +434,7 @@ export default {
         icon: "settings",
         content:
           "Minimize works to only what needs to be done, preventing over-work",
-        font_size: "",
+        font_size: "display-1",
         font_color: "custom_brown",
         background_color: "custom_white"
       }
@@ -435,6 +494,15 @@ export default {
       } else {
         return "transparent";
       }
+    }
+  },
+
+  computed: {
+    options() {
+      return {
+        duration: this.scroll_duration,
+        offset: this.scroll_offset
+      };
     }
   }
 };
